@@ -1,0 +1,63 @@
+{
+  "name": "interpolatable",
+  "version": "1.0.0",
+  "description": "Fast memoization for interpolatable entities",
+  "main": "build/index.js",
+  "browser": "build/bundle.min.js",
+  "author": "Adam Jenkins",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akmjenkins/interpolatable"
+  },
+  "bugs": {
+    "url": "https://github.com/akmjenkins/interpolatable/issues"
+  },
+  "keywords": [
+    "interpolation",
+    "memoization"
+  ],
+  "files": [
+    "build",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "clean": "rimraf build",
+    "build": "yarn clean && yarn babel && rollup -c",
+    "babel": "babel index.js -d build",
+    "lint": "eslint index.js",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@types/jest": "^27.0.1",
+    "@types/lodash": "^4.14.172",
+    "@types/node": "^16.7.10",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.1.0",
+    "babel-plugin-add-module-exports": "^1.0.4",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jest": "^24.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.1.0",
+    "jsonpointer": "^5.0.0",
+    "prettier": "^2.3.2",
+    "property-expr": "^2.0.4",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.56.3",
+    "rollup-plugin-bundle-size": "^1.0.3",
+    "rollup-plugin-sourcemaps": "^0.6.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "ts-jest": "^27.0.5",
+    "typescript": "^4.4.2"
+  }
+}

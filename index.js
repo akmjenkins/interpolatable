@@ -1,7 +1,7 @@
 const DEFAULT_MATCHER = /\{\{\s*(.+?)\s*\}\}/g;
 const DEFAULT_RESOLVER = (c, k) => c[k];
 
-const interpolate = (subject, params, options = {}, pushDeps) => {
+const interpolate = (subject, params, options, pushDeps) => {
   let shouldReplaceFull, found;
   const { pattern = DEFAULT_MATCHER, resolver = DEFAULT_RESOLVER } = options;
 
@@ -19,16 +19,21 @@ const joinPath = (path) => path.join('.');
 const reducePatch = (path, fn) =>
   fn(path.reduce((acc, p) => (fn(acc), joinPath([acc, p]))));
 
-const interpolatable = (subject, options, dependencyMap = {}, path = ['']) => {
+const interpolatable = (
+  subject,
+  options = {},
+  dependencyMap = {},
+  path = [''],
+) => {
   if (
     !subject ||
-    options?.pattern === null ||
+    options.pattern === null ||
     typeof subject === 'number' ||
     typeof subject === 'boolean'
   )
     return () => subject;
 
-  const resolver = options?.resolver || DEFAULT_RESOLVER;
+  const resolver = options.resolver || DEFAULT_RESOLVER;
 
   let last;
   const key = joinPath(path);

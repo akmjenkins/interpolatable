@@ -134,7 +134,7 @@ function interpolatable<T = string | Record<string, unknown> | unknown[]>(
 ): <R>(context: R) => T;
 
 type Options<R> = {
-  pattern?: string | RegExp;
+  pattern?: RegExp | null;
   resolver?: Resolver<R>;
 };
 
@@ -164,6 +164,8 @@ const result = interpolate({ bar: 'baz' });
  { foo: 'baz qux' }
 */
 ```
+
+**Note:** `pattern` can also be `null`. If pattern is passed as `null`, `interpolatable` will return a function that always returns your unaltered subject.
 
 #### `resolver: (context: R, subject: string) => unknown`
 

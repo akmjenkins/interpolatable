@@ -20,7 +20,12 @@ const reducePatch = (path, fn) =>
   fn(path.reduce((acc, p) => (fn(acc), joinPath([acc, p]))));
 
 const interpolatable = (subject, options, dependencyMap = {}, path = ['']) => {
-  if (!subject || typeof subject === 'number' || typeof subject === 'boolean')
+  if (
+    !subject ||
+    options?.pattern === null ||
+    typeof subject === 'number' ||
+    typeof subject === 'boolean'
+  )
     return () => subject;
 
   const resolver = options?.resolver || DEFAULT_RESOLVER;

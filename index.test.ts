@@ -9,6 +9,17 @@ describe('interpolatble memo', () => {
     expect(interpolate({ firstName: 'fred' })).toBe(subject);
   });
 
+  it('should not interpolate if pattern is null', () => {
+    const subject = {
+      a: [1, 2, '{{3}}'],
+      b: [1, 2, 3],
+      c: ['{{3}} foo'],
+    };
+    const interpolate = interpolatable(subject, { pattern: null });
+    const result = interpolate({ '3': 'foo' });
+    expect(result.a[2]).toBe('{{3}}');
+  });
+
   it('should work with an object', () => {
     const subject = {
       a: [1, 2, '{{3}}'],

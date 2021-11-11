@@ -32,7 +32,7 @@ const interpolatable = (subject, options, dependencyMap = {}, path = ['']) => {
 
   let last;
   const key = joinPath(path);
-  const deps = dependencyMap[key] ?? (dependencyMap[key] = []);
+  const deps = dependencyMap[key] || (dependencyMap[key] = []);
 
   const check = (params) => {
     if (

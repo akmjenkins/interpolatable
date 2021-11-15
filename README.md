@@ -1,7 +1,7 @@
 # interpolatable
 
 [![npm version](https://img.shields.io/npm/v/interpolatable)](https://npmjs.org/package/interpolatable)
-[![Coverage Status](https://coveralls.io/repos/github/akmjenkins/interpolatabler/badge.svg)](https://coveralls.io/github/akmjenkins/interpolatable)
+[![Coverage Status](https://coveralls.io/repos/github/akmjenkins/interpolatable/badge.svg)](https://coveralls.io/github/akmjenkins/interpolatable)
 ![Build Status](https://github.com/akmjenkins/interpolatable/actions/workflows/test.yaml/badge.svg)
 [![Bundle Phobia](https://badgen.net/bundlephobia/minzip/interpolatable)](https://bundlephobia.com/result?p=interpolatable)
 

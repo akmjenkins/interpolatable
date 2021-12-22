@@ -26,16 +26,15 @@ const interpolatable = (
   dependencyMap = {},
   path = [''],
 ) => {
+  const key = joinPath(path, options.delimiter);
   if (
     !subject ||
     options.pattern === null ||
     typeof subject === 'number' ||
-    typeof subject === 'boolean'
+    typeof subject === 'boolean' ||
+    (options.skip && options.skip.test(key))
   )
     return () => subject;
-
-  const key = joinPath(path, options.delimiter);
-  if (options.skip?.test(key)) return () => subject;
 
   const resolver = options.resolver || DEFAULT_RESOLVER;
 

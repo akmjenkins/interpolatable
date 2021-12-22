@@ -134,7 +134,7 @@ function interpolatable<T = string | Record<string, unknown> | unknown[]>(
 ): <R>(context: R) => T;
 
 type Options<R> = {
-  pattern?: RegExp;
+  pattern?: RegExp | null;
   resolver?: Resolver<R>;
   skip?: RegExp;
 };

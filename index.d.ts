@@ -1,7 +1,7 @@
 type Dependencies = Array<[string, unknown]>;
 type Resolver<R = unknown> = (context: R, subject: string) => unknown;
 export type Options<R> = {
-  pattern?: RegExp;
+  pattern?: RegExp | null;
   resolver?: Resolver<R>;
   skip?: RegExp;
   delimiter?: string;

@@ -1,8 +1,10 @@
 type Dependencies = Array<[string, unknown]>;
 type Resolver<R = unknown> = (context: R, subject: string) => unknown;
 type Options<R> = {
-  pattern?: RegExp | null;
+  pattern?: RegExp;
   resolver?: Resolver<R>;
+  skip?: RegExp;
+  delimiter?: string;
 };
 
 declare function interpolatable<

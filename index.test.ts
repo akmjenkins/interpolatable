@@ -66,4 +66,28 @@ describe('interpolatble memo', () => {
       )(context),
     ).toEqual({ a: [1, 2, 'qux'] });
   });
+
+  it('should skip', () => {
+    const subject = {
+      foo: '{{someString}}',
+      bar: {
+        some: {
+          deeply: {
+            nested: {
+              expensive_to_traverse: {
+                obj: '{{thing}}',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const interpolate = interpolatable(subject, { skip: /bar/ });
+    const interpolated = interpolate({ someString: 'joe', thing: 'blah' });
+    expect(interpolated.foo).toEqual('joe');
+    expect(interpolated.bar.some.deeply.nested.expensive_to_traverse.obj).toBe(
+      subject.bar.some.deeply.nested.expensive_to_traverse.obj,
+    );
+  });
 });

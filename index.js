@@ -1,5 +1,6 @@
 const DEFAULT_MATCHER = /\{\{\s*(.+?)\s*\}\}/g;
 const DEFAULT_RESOLVER = (c, k) => c[k];
+const PATH_DELIMITER = '.';
 
 const interpolate = (subject, params, options, pushDeps) => {
   let shouldReplaceFull, found;
@@ -15,7 +16,7 @@ const interpolate = (subject, params, options, pushDeps) => {
   return shouldReplaceFull ? found : replaced;
 };
 
-const joinPath = (path) => path.join('.');
+const joinPath = (path, delimiter = PATH_DELIMITER) => path.join(delimiter);
 const reducePatch = (path, fn) =>
   fn(path.reduce((acc, p) => (fn(acc), joinPath([acc, p]))));
 
@@ -33,10 +34,12 @@ const interpolatable = (
   )
     return () => subject;
 
+  const key = joinPath(path, options.delimiter);
+  if (options.skip?.test(key)) return () => subject;
+
   const resolver = options.resolver || DEFAULT_RESOLVER;
 
   let last;
-  const key = joinPath(path);
   const deps = dependencyMap[key] || (dependencyMap[key] = []);
 
   const check = (params) => {

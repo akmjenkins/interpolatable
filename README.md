@@ -134,8 +134,9 @@ function interpolatable<T = string | Record<string, unknown> | unknown[]>(
 ): <R>(context: R) => T;
 
 type Options<R> = {
-  pattern?: RegExp | null;
+  pattern?: RegExp;
   resolver?: Resolver<R>;
+  skip?: RegExp;
 };
 
 type Resolver<R = unknown> = (context: R, subject: string) => unknown;
@@ -201,6 +202,37 @@ const result = interpolate({
  { foo: 'qux' }
 */
 ```
+
+#### `skip: RegExp`
+
+Sometimes we want to interpolate a very large deeply nested object. Traversing the entire object is often unnecessary and can be very expensive. This is where `skip` comes in. When `skip` is defined, all paths, while traversing the subject, will be tested against it. If the path matches the `skip` RegExp, anything beneath it will not be traversed.
+
+```js
+const interpolate = interpolatable(
+  {
+    foo: '{{someString}}',
+    bar: {
+      some: {
+        deeply: {
+          nested: {
+            expensive_to_traverse: {
+              object: []
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    skip: /bar/
+  }
+)
+```
+
+
+### `delimieter: string = '.'`
+
+The delimiter is the thing that joins path segments and defaults to a `.`. Useful to configure if you're [skip](#skip) RegExp is restrictive.
 
 ```js
 import { get } from 'json-pointer';

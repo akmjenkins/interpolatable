@@ -230,9 +230,9 @@ const interpolate = interpolatable(
 ```
 
 
-### `delimieter: string = '.'`
+### `delimiter: string = '.'`
 
-The delimiter is the thing that joins path segments and defaults to a `.`. Useful to configure if you're [skip](#skip) RegExp is restrictive.
+The delimiter is the thing that joins path segments and defaults to a `.`. Useful to configure if your [skip](#skip) RegExp is restrictive.
 
 ```js
 import { get } from 'json-pointer';

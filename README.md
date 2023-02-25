@@ -51,7 +51,7 @@ const result = interpolate({
   city: 'Halifax',
   apiKey: 'XXX',
   units: 'metric',
-  minimum: 20,
+  hotTemp: 20,
 });
 
 /*
